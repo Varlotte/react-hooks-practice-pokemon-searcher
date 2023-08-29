@@ -26,11 +26,16 @@ function PokemonPage() {
     setFilteredPokeData(filtered);
   };
 
+  const addPokemon = (newPokemon) => {
+    console.log(newPokemon);
+    // do a POST request to add the pokemon, and update the list
+  };
+
   return (
     <Container>
       <h1>Pokemon Searcher</h1>
       <br />
-      <PokemonForm />
+      <PokemonForm addPokemon={addPokemon} />
       <br />
       <Search updateSearch={updateSearch} />
       <br />
