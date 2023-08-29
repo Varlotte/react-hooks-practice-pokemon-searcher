@@ -7,12 +7,24 @@ import { Container } from "semantic-ui-react";
 function PokemonPage() {
   const pokeURL = "http://localhost:3001/pokemon";
   const [pokeData, setPokeData] = useState([]);
+  const [filteredPokeData, setFilteredPokeData] = useState(pokeData);
 
   useEffect(() => {
     fetch(pokeURL)
       .then((r) => r.json())
-      .then((data) => setPokeData(data));
+      .then((data) => {
+        setPokeData(data);
+        setFilteredPokeData(data);
+      });
   }, []);
+
+  const updateSearch = (name) => {
+    const filtered = pokeData.filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(name.toLowerCase())
+    );
+
+    setFilteredPokeData(filtered);
+  };
 
   return (
     <Container>
@@ -20,9 +32,9 @@ function PokemonPage() {
       <br />
       <PokemonForm />
       <br />
-      <Search />
+      <Search updateSearch={updateSearch} />
       <br />
-      <PokemonCollection pokeData={pokeData} />
+      <PokemonCollection pokeData={filteredPokeData} />
     </Container>
   );
 }
