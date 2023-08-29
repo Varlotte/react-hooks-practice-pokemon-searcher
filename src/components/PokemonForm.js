@@ -34,11 +34,7 @@ function PokemonForm({ addPokemon }) {
     <div>
       <h3>Add a Pokemon!</h3>
       <Form
-        onSubmit={(e) => {
-          const name = e.target.name.value;
-          const hp = e.target.hp.value;
-          const front = e.target.frontUrl.value;
-          const back = e.target.backUrl.value;
+        onSubmit={() => {
           const newPokemon = {
             name,
             hp,
