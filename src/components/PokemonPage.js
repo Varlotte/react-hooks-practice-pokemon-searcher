@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PokemonCollection from "./PokemonCollection";
 import PokemonForm from "./PokemonForm";
 import Search from "./Search";
 import { Container } from "semantic-ui-react";
 
 function PokemonPage() {
+  const pokeURL = "http://localhost:3001/pokemon";
+  const [pokeData, setPokeData] = useState([]);
+
+  useEffect(() => {
+    fetch(pokeURL)
+      .then((r) => r.json())
+      .then((data) => setPokeData(data));
+  }, []);
+
   return (
     <Container>
       <h1>Pokemon Searcher</h1>
@@ -13,7 +22,7 @@ function PokemonPage() {
       <br />
       <Search />
       <br />
-      <PokemonCollection />
+      <PokemonCollection pokeData={pokeData} />
     </Container>
   );
 }
