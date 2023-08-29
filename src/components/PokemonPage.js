@@ -27,8 +27,20 @@ function PokemonPage() {
   };
 
   const addPokemon = (newPokemon) => {
-    console.log(newPokemon);
-    // do a POST request to add the pokemon, and update the list
+    fetch(pokeURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newPokemon),
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        const updatedList = [...pokeData, data];
+
+        setPokeData(updatedList);
+        setFilteredPokeData(updatedList);
+      });
   };
 
   return (
