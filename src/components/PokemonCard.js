@@ -9,8 +9,8 @@ function PokemonCard({ pokemon }) {
   const pokeAlt = pokeImage ? name : "oh no!";
 
   return (
-    <Card>
-      <div onClick={handleClick}>
+    <Card onClick={handleClick}>
+      <div>
         <div className="image">
           <img src={pokeImage} alt={pokeAlt} />
         </div>
